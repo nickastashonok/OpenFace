@@ -166,9 +166,12 @@ if (NOT TARGET dlib)
 
          mark_as_advanced(pthreadlib xlib xlib_path x11_path)
       else () ##################################################################################
-         find_library(pthreadlib pthread)
+        if (NOT ANDROID)
+	 find_library(pthreadlib pthread)
          set (dlib_needed_libraries ${pthreadlib})
-
+	else()
+	 set (dlib_needed_libraries "")
+	endif()
          # link to the nsl library if it exists.  this is something you need sometimes 
          find_library(nsllib nsl)
          if (nsllib)

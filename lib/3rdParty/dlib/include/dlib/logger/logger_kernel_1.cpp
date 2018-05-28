@@ -121,7 +121,8 @@ namespace dlib
 
         // set up the defaults
         auto_flush_table.val = true;
-        streambuf_table.val = std::cout.rdbuf(); 
+        // weird crash on android. didn't have time to check the root cause
+        //streambuf_table.val = std::cout.rdbuf();
         header_table.val = print_default_logger_header;
 
         // also allocate an initial buffer for hook based logging
